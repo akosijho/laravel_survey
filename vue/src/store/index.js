@@ -6,6 +6,7 @@ const store = createStore(
             user: {
                 data: {},
                 token : 123
+                
             }
         },
         getters: {},
