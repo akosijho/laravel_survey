@@ -95,6 +95,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 import { useStore } from 'vuex';
 import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 
 const navigation = [
     { name: 'Dashboard', to: { name: "Dashboard" } },
@@ -113,10 +114,22 @@ export default {
     },
     setup() {
 
-        const store = useStore();
+        const store = useStore(); // from vuex
+        const router = useRouter();
+
+        // implement logout
+        function logout(){
+            store.commit('logout');
+            router.push({
+                name: 'Login',
+            })
+        }
+
+
         return {
             user: computed(() => store.state.user.data),
             navigation,
+            logout
         }
     }
 }
